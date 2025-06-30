@@ -96,7 +96,7 @@ int main(){
     SDL_RenderFillRect(prenderer, &background_rect);
 
     int quit = 0;
-    struct Circle circle = (struct Circle){100, 100, 10 ,10, -10, 60, 0.8};
+    struct Circle circle = (struct Circle){100, 100, 10 ,10, -1, 60, 0.8};
 
     while(!quit)
     {
