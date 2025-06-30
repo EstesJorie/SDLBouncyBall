@@ -42,7 +42,7 @@ To run:
 
 ## Note(s)
 
-The velocity of the circle (vx, vy) is updated every frame dependent on gravity and the dampening factor when bouncing on the edge of the frame. 
+The velocity of the circle **(vx, vy)** is updated every frame dependent on gravity and the dampening factor when bouncing on the edge of the frame. 
 
 Debug output for the position and velocity is printed every ten frames in the function *updatePosition()*
 
