@@ -40,7 +40,7 @@ To compile via MSVC (*Windows*):
 ```bat
 cl /I"path\to\SDL2\include" main.c /link /LIBPATH:"path\to\SDL2\lib" SDL2.lib SDL2main.lib user32.lib gdi32.lib shell32.lib
 ```
-### Note
+#### Note
 
 > This assumes that SDL2 is set up in Visual Studio project/environment
 
