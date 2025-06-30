@@ -33,32 +33,34 @@ void updatePosition(struct Circle *pcircle)
         pcircle->vx = -pcircle->vx; //invert
         pcircle->vx *= pcircle->dampening;
     }
-    if(pcircle->x > WIDTH+radius)
+    if (pcircle->x > WIDTH - radius)
     {
         pcircle->x = WIDTH-radius;
         pcircle->vx = -pcircle->vx; //invert
         pcircle->vx *= pcircle->dampening;
-
     }
     if(pcircle->y < 0+radius)
     {
         pcircle->y = radius;
         pcircle->vy = -pcircle->vy; //invert
         pcircle->vy *= pcircle->dampening;
-
     }
     if(pcircle->y > HEIGHT-radius)
     {
         pcircle->y = HEIGHT-radius;
         pcircle->vy = -pcircle->vy; //invert
         pcircle->vy *= pcircle->dampening;
-
+    }
+    
+    static int frame = 0;
+    if (frame++ % 10 == 0) {
+        printf("x=%.2f, y=%.2f, vx=%.2f, vy=%.2f\n", pcircle->x, pcircle->y, pcircle->vx, pcircle->vy);
     }
 }
 
 void drawCircle(SDL_Renderer *prenderer, struct Circle *pcircle)
  {
-    SDL_SetRenderDrawColor(prenderer, 0x00, 0xff, 0x00, 0x00);
+    SDL_SetRenderDrawColor(prenderer, 0x00, 0xff, 0x00, 0xFF); // green
     double y = pcircle->y;
     double x = pcircle->x;
     for(double i=x-pcircle->radius; i<x+pcircle->radius; i++)
@@ -77,7 +79,6 @@ void drawCircle(SDL_Renderer *prenderer, struct Circle *pcircle)
 
 int main(){
     printf("Hello Circle\n");
-    SDL_Init(SDL_INIT_VIDEO);
 
     if(SDL_Init(SDL_INIT_VIDEO) != 0){
         printf("SDL_Init Error: %s\n", SDL_GetError());
@@ -95,7 +96,7 @@ int main(){
     SDL_RenderFillRect(prenderer, &background_rect);
 
     int quit = 0;
-    struct Circle circle = (struct Circle){100, 100, 10 ,10, -10, 60, 0.9};
+    struct Circle circle = (struct Circle){100, 100, 10 ,10, -0.5, 60, 0.8};
 
     while(!quit)
     {
@@ -115,20 +116,6 @@ int main(){
         drawCircle(prenderer, &circle);
         SDL_Delay(20); //20ms delay
 
-    }
-
-
-    Uint32 start = SDL_GetTicks();
-    SDL_Event e;
-    int running = 1;
-
-    while (running && (SDL_GetTicks() - start < 3000)) {
-        while (SDL_PollEvent(&e)) {
-            if (e.type == SDL_QUIT) {
-                running = 0;
-            }
-        }
-        SDL_Delay(10);  
     }
 
     SDL_DestroyRenderer(prenderer);
