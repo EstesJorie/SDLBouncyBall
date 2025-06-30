@@ -11,6 +11,7 @@ struct Circle
     double y;
     double vx; 
     double vy; 
+    double gravity;
     double radius;
 };
 
@@ -18,6 +19,11 @@ void updatePosition(struct Circle *pcircle)
 {
     double newX = pcircle->x + pcircle->vx;
     double newY = pcircle->y + pcircle->vy;
+    double newVy = pcircle->vy + pcircle->gravity;
+
+    pcircle->x = newX;
+    pcircle->y = newY;
+    pcircle->vx = newVy;
 }
 
 void drawCircle(SDL_Renderer *prenderer, struct Circle *pcircle)
@@ -57,9 +63,10 @@ int main(){
     SDL_Rect background_rect = (struct SDL_Rect) {0, 0, WIDTH, HEIGHT};
     SDL_SetRenderDrawColor(prenderer, 0x00, 0x00, 0x00, 0x00); //background color
     SDL_RenderFillRect(prenderer, &background_rect);
-    drawCircle(prenderer, 50, 50, 60);
 
     int quit = 0;
+    struct Circle circle = (struct Circle){100, 100, 10 ,10, -10, 60};
+
     while(!quit)
     {
         SDL_Event event;
@@ -71,9 +78,12 @@ int main(){
                 quit=1;
             }
         }
-        updatePosition(&circle)
-        struct Circle circle = (struct Circle){100, 100, 10, 10, 60};
+        SDL_SetRenderDrawColor(prenderer, 0x00, 0x00, 0x00, 0x00); //background color
+
+        SDL_RenderClear(prenderer);
+        updatePosition(&circle);
         drawCircle(prenderer, &circle);
+        SDL_Delay(20); //20ms delay
 
     }
 
