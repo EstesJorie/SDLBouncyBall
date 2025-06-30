@@ -16,13 +16,7 @@ SDL can be installed via [Homebrew](https://brew.sh/):
 brew install sdl2
 ```
 
-### Windows
-
-1. Download SDL2 development libraries from:
-    https://www.libsdl.org/download-2.0.php
-2. Extract files and configure complier to include SDL2 headers and link SDL2 libraries
-3. Ensure SDL2.dll is in system PATH
-
+### Compliation (*macOS/Linux/Windows*)
 To compile via GCC:
 ```bash
 gcc $(sdl2-config --cflags --libs) main.c -lm -o "Bouncing Circle"
@@ -43,6 +37,36 @@ cl /I"path\to\SDL2\include" main.c /link /LIBPATH:"path\to\SDL2\lib" SDL2.lib SD
 #### Note
 
 > This assumes that SDL2 is set up in Visual Studio project/environment
+
+### Windows
+
+This project includes a `build.bat` file that is located in the `build\` folder.
+
+### To build the project:
+
+1. Open a **Command Prompt** and navigate to the project root directory (i.e. `build.bat` is located):
+
+    ```cmd
+    cd path\to\your\project
+    ```
+
+2. Run the build script:
+
+    ```cmd
+    build.bat
+    ```
+
+This will compile the source code and output the executable **Bouncing Circle.exe** in the project root folder, and copy the required SDL2 DLL for you.
+
+#### Note
+To remove the build/executable: 
+
+Simply delete the **Bouncing Circle.exe** and `SDL2.dll` manually from the project root folder, or run:
+
+```cmd
+del "Bouncing Circle.exe"
+del SDL2.dll
+```
 
 To run:
 ```bash
