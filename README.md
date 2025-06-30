@@ -28,6 +28,7 @@ To compile via GCC:
 gcc $(sdl2-config --cflags --libs) main.c -lm -o "Bouncing Circle"
 ```
 > *-lm* links the required math library
+
 > *$(sdl2-config --cflags --libs)* adds the required SDL2 configuration headers and libraries
 
 To run:
