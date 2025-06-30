@@ -13,17 +13,47 @@ struct Circle
     double vy; 
     double gravity;
     double radius;
+    double dampening;
 };
 
 void updatePosition(struct Circle *pcircle)
 {
     double newX = pcircle->x + pcircle->vx;
     double newY = pcircle->y + pcircle->vy;
-    double newVy = pcircle->vy + pcircle->gravity;
+    double newVy = pcircle->vy - pcircle->gravity;
+    double radius = pcircle->radius;
 
     pcircle->x = newX;
     pcircle->y = newY;
-    pcircle->vx = newVy;
+    pcircle->vy = newVy;
+
+    if(pcircle->x < 0+radius)
+    {
+        pcircle->x = radius;
+        pcircle->vx = -pcircle->vx; //invert
+        pcircle->vx *= pcircle->dampening;
+    }
+    if(pcircle->x > WIDTH+radius)
+    {
+        pcircle->x = WIDTH-radius;
+        pcircle->vx = -pcircle->vx; //invert
+        pcircle->vx *= pcircle->dampening;
+
+    }
+    if(pcircle->y < 0+radius)
+    {
+        pcircle->y = radius;
+        pcircle->vy = -pcircle->vy; //invert
+        pcircle->vy *= pcircle->dampening;
+
+    }
+    if(pcircle->y > HEIGHT-radius)
+    {
+        pcircle->y = HEIGHT-radius;
+        pcircle->vy = -pcircle->vy; //invert
+        pcircle->vy *= pcircle->dampening;
+
+    }
 }
 
 void drawCircle(SDL_Renderer *prenderer, struct Circle *pcircle)
@@ -65,7 +95,7 @@ int main(){
     SDL_RenderFillRect(prenderer, &background_rect);
 
     int quit = 0;
-    struct Circle circle = (struct Circle){100, 100, 10 ,10, -10, 60};
+    struct Circle circle = (struct Circle){100, 100, 10 ,10, -10, 60, 0.9};
 
     while(!quit)
     {
