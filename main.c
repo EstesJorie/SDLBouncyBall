@@ -51,7 +51,7 @@ void updatePosition(struct Circle *pcircle)
         pcircle->vy = -pcircle->vy; //invert
         pcircle->vy *= pcircle->dampening;
     }
-    
+
     static int frame = 0;
     if (frame++ % 10 == 0) {
         printf("x=%.2f, y=%.2f, vx=%.2f, vy=%.2f\n", pcircle->x, pcircle->y, pcircle->vx, pcircle->vy);
@@ -96,7 +96,7 @@ int main(){
     SDL_RenderFillRect(prenderer, &background_rect);
 
     int quit = 0;
-    struct Circle circle = (struct Circle){100, 100, 10 ,10, -0.5, 60, 0.8};
+    struct Circle circle = (struct Circle){100, 100, 10 ,10, -5.5, 60, 0.8};
 
     while(!quit)
     {
