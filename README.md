@@ -31,6 +31,19 @@ gcc $(sdl2-config --cflags --libs) main.c -lm -o "Bouncing Circle"
 
 > *$(sdl2-config --cflags --libs)* adds the required SDL2 configuration headers and libraries
 
+To compile via Clang (*macOS/Linux*):
+```bash
+clang $(sdl2-config --cflags --libs) main.c -lm -o "Bouncing Circle"
+```
+
+To compile via MSVC (*Windows*):
+```bat
+cl /I"path\to\SDL2\include" main.c /link /LIBPATH:"path\to\SDL2\lib" SDL2.lib SDL2main.lib user32.lib gdi32.lib shell32.lib
+```
+### Note
+
+> This assumes that SDL2 is set up in Visual Studio project/environment
+
 To run:
 ```bash
 ./"Bouncing Circle"
