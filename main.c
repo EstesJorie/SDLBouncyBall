@@ -96,7 +96,7 @@ int main(){
     SDL_RenderFillRect(prenderer, &background_rect);
 
     int quit = 0;
-    struct Circle circle = (struct Circle){100, 100, 10 ,10, -5, 60, 0.8};
+    struct Circle circle = (struct Circle){100, 100, 10 ,10, -1, 60, 0.9};
 
     while(!quit)
     {
@@ -115,9 +115,7 @@ int main(){
         updatePosition(&circle);
         drawCircle(prenderer, &circle);
         SDL_Delay(20); //20ms delay
-
     }
-
     SDL_DestroyRenderer(prenderer);
     SDL_DestroyWindow(pwindow);
     SDL_Quit();
