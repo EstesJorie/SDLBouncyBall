@@ -1,5 +1,3 @@
-# SDLBouncyBall
-
 A bouncing ball demo written in C using SDL2.
 This project demonstrates basic 2D graphics rendering, simple physics simulation, and event handling using the SDL2 library.
 
